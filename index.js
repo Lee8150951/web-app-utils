@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken');
+
 /** time-sensitive localstorage **/
 const storage = {
   setStorage: (key ,value, aging=false) => {
@@ -63,7 +65,7 @@ const deepCopy = (obj) => {
   return copy;
 };
 
-/** deep Equal **/
+/** deep equal **/
 const deepEqual = (obj1, obj2) => {
   if (obj1 === obj2) return true;
   if (typeof obj1 !== 'object' || obj1 === null ||
@@ -81,10 +83,83 @@ const deepEqual = (obj1, obj2) => {
   return true;
 }
 
+/** data type **/
+const getType = (value) => {
+  if (value === null) {
+    return "null";
+  } else if (typeof value === "object") {
+    if (Array.isArray(value)) {
+      return "array";
+    } else {
+      return "object";
+    }
+  } else {
+    return typeof value;
+  }
+};
+
+/** debounce **/
+const debounce = (func, delay) => {
+  let timer = null;
+  return function() {
+    let context = this;
+    let args = arguments;
+    clearTimeout(timer);
+    timer = setTimeout(function() {
+      func.apply(context, args);
+    }, delay);
+  }
+};
+
+/** throttle **/
+const throttle = (func, interval) => {
+  let timer = null;
+  return function() {
+    let context = this;
+    let args = arguments;
+    if (!timer) {
+      timer = setTimeout(function() {
+        func.apply(context, args);
+        timer = null;
+      }, interval);
+    }
+  }
+};
+
+/** plain object **/
+const judgePlainObject = (obj) => {
+  if (typeof obj !== "object" || obj === null || Object.prototype.toString.call(obj) !== "[object Object]") {
+    return false;
+  }
+  const proto = Object.getPrototypeOf(obj);
+  return proto === null || proto === Object.prototype;
+};
+
+/** token **/
+const token = {
+  setToken: (data, secret, age) => {
+    if (!judgePlainObject(data)) return;
+    return jwt.sign(data, secret, { expiresIn: age });
+  },
+  getToken: (token, secret) => {
+    try {
+      const data = jwt.verify(token, secret);
+      return { status: true, data };
+    } catch (error) {
+      return { status: false, data: error };
+    }
+  },
+};
+
 const utils = {
   storage,
   deepCopy,
   deepEqual,
+  getType,
+  debounce,
+  throttle,
+  judgePlainObject,
+  token,
 };
 
 module.exports = utils;

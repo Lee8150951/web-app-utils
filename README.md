@@ -19,6 +19,12 @@ import _ from 'web-app-utils';
 | storage.removeStorage | Remove a time-sensitive localstorage                      |
 | deepCopy              | Deep copy an object or an array                           |
 | deepEqual             | Deeply compare whether two objects or arrays are the same |
+| getType               | Get detailed data types                                   |
+| debounce              | Debounce a function                                       |
+| throttle              | Throttle a function                                       |
+| judgePlainObject      | Determine whether an object is an ordinary object         |
+| token.setToken        | Set encryption token through json-web-token               |
+| token.getToken        | Decrypt token                                             |
 
 ## 🔧 Usage
 
@@ -68,7 +74,7 @@ _.storage.removeStorage('a');
 
 ### - deepCopy
 
-**Pramas**
+**Params**
 
 - `obj` **Array|Object**: The object or array that needs to be deep copied
 - `return` **Array|Object**: The result of a deep copy
@@ -81,7 +87,7 @@ const obj_clone = _.deepCopy(obj1);
 
 ### - deepEqual
 
-**Pramas**
+**Params**
 
 - `obj1` **Array|Object**: The object1 or array1 that need to be compared deeply
 - `obj2` **Array|Object**: The object2 or array2 that need to be compared deeply
@@ -91,5 +97,95 @@ const obj_clone = _.deepCopy(obj1);
 
 ```javascript
 const result = _.deepEqual(obj1, obj2);
+```
+
+### - getType
+
+**Params**
+
+- `value` **any**: The data that needs to be typed
+- `return` **string**: Data type
+
+**Example**
+
+```javascript
+const type = _.getType(value);
+```
+
+### - debounce
+
+Returns a function that can be called multiple times (possibly in quick succession), but only fires the callback after waiting x milliseconds after the last call
+
+**Params**
+
+- `func` **Function**: The function that needs anti-shake
+- `delay` **number**: The delay time that needs to be configured for the function, in milliseconds
+- `return` **Function**: The processed function
+
+**Example**
+
+```javascript
+const new_func = _.debounce(old_func, 1000);
+```
+
+### - throttle
+
+Returns a function that can be called multiple times (possibly in quick succession), but only every x milliseconds, triggering the callback.
+
+**Params**
+
+- `func` **Function**: The function that needs throttle
+- `interval` **number**: Throttling Interval
+
+- `return` **Function**: The processed function
+
+**Example**
+
+```javascript
+const new_func = _.throttle(old_func, 1000);
+```
+
+### - judgePlainObject
+
+**Params**
+
+- `obj` **Object**: Object to determine whether it is a plain object
+- `return` **boolean**: Returns true if the input object is a plain object, otherwise returns false
+
+**Example**
+
+```javascript
+const isPlainObject = _.judgePlainObject(obj);
+```
+
+### - token
+
+#### token.setToken
+
+**Params**
+
+- `data` **Object**: The data that the token needs to contain
+- `secret` **string**: The encryption key
+- `age` **string**: Token validity period
+- `return` **string**: A JSON Web Token string
+
+**Example**
+
+```javascript
+const token = _.token.setToken({name: 'xxx', phone: 'xxx'}, 'husib&hs2#', '2d');
+```
+
+#### token.getToken
+
+**Params**
+
+- `token` **string**: The token that needs to be solved
+- `secret` **string**: The encryption key
+- `return` **{ status: boolean, data: Object }**: Decrypted data, when the status is true, the decryption is successful, and when it is false, the decryption fails
+
+**Example**
+
+```javascript
+const data = _.token.getToken('xxx', 'husib&hs2#');
 ```
 
