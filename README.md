@@ -12,11 +12,13 @@ import _ from 'web-app-utils';
 
 ## 🧾 API List
 
-| API                   | Describe                             |
-| --------------------- | ------------------------------------ |
-| storage.setStorage    | Set up a time-sensitive localstorage |
-| storage.getStorage    | Get a time-sensitive localstorage    |
-| storage.removeStorage | Remove a time-sensitive localstorage |
+| API                   | Describe                                                  |
+| --------------------- | --------------------------------------------------------- |
+| storage.setStorage    | Set up a time-sensitive localstorage                      |
+| storage.getStorage    | Get a time-sensitive localstorage                         |
+| storage.removeStorage | Remove a time-sensitive localstorage                      |
+| deepCopy              | Deep copy an object or an array                           |
+| deepEqual             | Deeply compare whether two objects or arrays are the same |
 
 ## 🔧 Usage
 
@@ -62,5 +64,32 @@ _.storage.getStorage('a');
 
 ```javascript
 _.storage.removeStorage('a');
+```
+
+### - deepCopy
+
+**Pramas**
+
+- `obj` **Array|Object**: The object or array that needs to be deep copied
+- `return` **Array|Object**: The result of a deep copy
+
+**Example**
+
+```javascript
+const obj_clone = _.deepCopy(obj1);
+```
+
+### - deepEqual
+
+**Pramas**
+
+- `obj1` **Array|Object**: The object1 or array1 that need to be compared deeply
+- `obj2` **Array|Object**: The object2 or array2 that need to be compared deeply
+- `return` **boolean**: Returns whether two values are deeply equal
+
+**Example**
+
+```javascript
+const result = _.deepEqual(obj1, obj2);
 ```
 
