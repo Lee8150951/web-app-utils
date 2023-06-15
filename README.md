@@ -8,7 +8,24 @@ import _ from 'web-app-utils';
 
 ## 📖 Contents
 
-[toc]
+- [web-app-utils](#web-app-utils)
+  - [📖 Contents](#-contents)
+  - [🧾 API List](#-api-list)
+  - [🔧 Usage](#-usage)
+    - [- storage](#--storage)
+      - [storage.setStorage](#storagesetstorage)
+      - [storage.getStorage](#storagegetstorage)
+      - [storage.removeStorage](#storageremovestorage)
+    - [- deepCopy](#--deepcopy)
+    - [- deepEqual](#--deepequal)
+    - [- getType](#--gettype)
+    - [- debounce](#--debounce)
+    - [- throttle](#--throttle)
+    - [- judgePlainObject](#--judgeplainobject)
+    - [- token](#--token)
+      - [token.setToken](#tokensettoken)
+      - [token.getToken](#tokengettoken)
+
 
 ## 🧾 API List
 
