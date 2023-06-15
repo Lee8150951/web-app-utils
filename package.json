@@ -1,8 +1,10 @@
 {
   "name": "@oreo9875/web-app-utils",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "",
-  "main": "index.js",
+  "main": "index.cjs",
+  "module": "index.mjs",
+  "type": "module",
   "keywords": ["web-app", "utils"],
   "author": "",
   "license": "ISC",
